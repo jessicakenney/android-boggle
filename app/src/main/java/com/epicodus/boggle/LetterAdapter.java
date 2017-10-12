@@ -1,6 +1,7 @@
 package com.epicodus.boggle;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 public class LetterAdapter extends BaseAdapter {
     private Context mContext;
     private String[] mLetters;
+    private Typeface mTypeface;
 
     @Override
     public int getCount() {
@@ -22,7 +24,7 @@ public class LetterAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mLetters[position];
     }
 
     @Override
@@ -47,15 +49,17 @@ public class LetterAdapter extends BaseAdapter {
                     .findViewById(R.id.grid_item_letter);
 
             // set values into views
-            letterView.setText(mLetters[position]);  // using dummy data for now
+            letterView.setText(mLetters[position]);
+            letterView.setTypeface(mTypeface);
         } else {
             gridView = (View) convertView;
         }
         return gridView;
     }
 
-    public LetterAdapter (Context context, String[] letters){
+    public LetterAdapter (Context context, String[] letters, Typeface typeface){
         this.mContext = context;
         this.mLetters = letters;
+        this.mTypeface = typeface;
     }
 }
