@@ -10,6 +10,8 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import static com.epicodus.boggle.R.id.parent;
 
 public class BoggleActivity extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class BoggleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boggle);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/caviardreams.ttf");
         gridView = (GridView) findViewById(R.id.baseGridView);
+        testTextView = (TextView) findViewById(R.id.testTextView);
 
         letterAdapter = new LetterAdapter(this,letters,typeface);
         gridView.setAdapter(letterAdapter);
@@ -32,8 +35,8 @@ public class BoggleActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String selectedItem = letterAdapter.getItem(position).toString();
-                Toast.makeText(BoggleActivity.this, selectedItem, Toast.LENGTH_SHORT).show();
-                //testTextView.setText(selectedItem);
+                //Toast.makeText(BoggleActivity.this, selectedItem, Toast.LENGTH_SHORT).show();
+                testTextView.append(selectedItem);
             }
         });
     }
